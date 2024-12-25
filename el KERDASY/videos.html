@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كروت الصفوف الدراسية</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+        .navbar {
+            background-color: rgba(13, 77, 133, 0.9);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 5px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #00aced;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #eee;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-content p {
+            font-size: 1rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .btn-lessons {
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-lessons:hover {
+            background-color: #cc0000;
+        }
+
+        /* Specific Styles for Grades */
+        .grade-1 { background-color: #ffeb3b; }
+        .grade-2 { background-color: #4caf50; }
+        .grade-3 { background-color: #2196f3; }
+        .grade-4 { background-color: #ff9800; }
+        .grade-5 { background-color: #8bc34a; }
+        .grade-6 { background-color: #00bcd4; }
+        .grade-7 { background-color: #9c27b0; }
+        .grade-8 { background-color: #e91e63; }
+        .grade-9 { background-color: #795548; }
+        .grade-10 { background-color: #ffc107; }
+        .grade-11 { background-color: #ff5722; }
+        .grade-12 { background-color: #607d8b; }
+
+        /* نافذة منبثقة */
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .popup-card {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <ul>
+            <li><a href="home.HTML">الرئيسية</a></li>
+            <li><a href="">الفيديوهات التعليمية</a></li>
+            <li><a href=>عن المدرسة</a></li>
+            <li><a href=>تواصل معنا</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="card grade-1">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+1" alt="Grade 1">
+            <div class="card-content">
+                <h3>الصف الأول</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade1')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-2">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+2" alt="Grade 2">
+            <div class="card-content">
+                <h3>الصف الثاني</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade2')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-3">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+3" alt="Grade 3">
+            <div class="card-content">
+                <h3>الصف الثالث</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade3')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-4">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+4" alt="Grade 4">
+            <div class="card-content">
+                <h3>الصف الرابع</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade4')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-5">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+5" alt="Grade 5">
+            <div class="card-content">
+                <h3>الصف الخامس</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade5')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-6">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+6" alt="Grade 6">
+            <div class="card-content">
+                <h3>الصف السادس</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade6')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-7">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+7" alt="Grade 7">
+            <div class="card-content">
+                <h3>الصف السابع</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade7')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-8">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+8" alt="Grade 8">
+            <div class="card-content">
+                <h3>الصف الثامن</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade8')">شوف الدروس</button>
+            </div>
+        </div>
+        <div class="card grade-9">
+            <img src="https://via.placeholder.com/250x150.png?text=Grade+9" alt="Grade 9">
+            <div class="card-content">
+                
+                <h3>الصف التاسع</h3>
+                <button class="btn-lessons" onclick="openPopup('popup-grade9')">شوف الدروس</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نوافذ منبثقة لكل صف -->
+    <div id="popup-grade1" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade1')">&times;</span>
+            <h3>محتويات الصف الأول</h3>
+            <a class="popup-card" href="link-to-arabic1">عربي</a>
+            <a class="popup-card" href="link-to-math1">رياضة</a>
+            <a class="popup-card" href="link-to-english1">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies1">دراسات</a>
+            <a class="popup-card" href="link-to-science1">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade2" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade2')">&times;</span>
+            <h3>محتويات الصف الثاني</h3>
+            <a class="popup-card" href="link-to-arabic2">عربي</a>
+            <a class="popup-card" href="link-to-math2">رياضة</a>
+            <a class="popup-card" href="link-to-english2">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies2">دراسات</a>
+            <a class="popup-card" href="link-to-science2">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade3" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade3')">&times;</span>
+            <h3>محتويات الصف الثالث</h3>
+            <a class="popup-card" href=https://www.youtube.com/playlist?list=PLIGfCOmnXRyuACuF3YP2-z8gmcgf_ZmU->عربي</a>
+            <a class="popup-card" href="link-to-math3">رياضة</a>
+            <a class="popup-card" href="link-to-english3">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies3">دراسات</a>
+            <a class="popup-card" href="link-to-science3">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade4" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade4')">&times;</span>
+            <h3>محتويات الصف الرابع</h3>
+            <a class="popup-card" href="link-to-arabic4">عربي</a>
+            <a class="popup-card" href="link-to-math4">رياضة</a>
+            <a class="popup-card" href="link-to-english4">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies4">دراسات</a>
+            <a class="popup-card" href="link-to-science4">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade5" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade5')">&times;</span>
+            <h3>محتويات الصف الخامس</h3>
+            <a class="popup-card" href="link-to-arabic5">عربي</a>
+            <a class="popup-card" href="link-to-math5">رياضة</a>
+            <a class="popup-card" href="link-to-english5">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies5">دراسات</a>
+            <a class="popup-card" href="link-to-science5">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade6" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade6')">&times;</span>
+            <h3>محتويات الصف السادس</h3>
+            <a class="popup-card" href="link-to-arabic6">عربي</a>
+            <a class="popup-card" href="link-to-math6">رياضة</a>
+            <a class="popup-card" href="link-to-english6">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies6">دراسات</a>
+            <a class="popup-card" href="link-to-science6">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade7" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade7')">&times;</span>
+            <h3>محتويات الصف السابع</h3>
+            <a class="popup-card" href="link-to-arabic7">عربي</a>
+            <a class="popup-card" href="link-to-math7">رياضة</a>
+            <a class="popup-card" href="link-to-english7">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies7">دراسات</a>
+            <a class="popup-card" href="link-to-science7">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade8" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade8')">&times;</span>
+            <h3>محتويات الصف الثامن</h3>
+            <a class="popup-card" href="link-to-arabic8">عربي</a>
+            <a class="popup-card" href="link-to-math8">رياضة</a>
+            <a class="popup-card" href="link-to-english8">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies8">دراسات</a>
+            <a class="popup-card" href="link-to-science8">علوم</a>
+        </div>
+    </div>
+    
+    <div id="popup-grade9" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('popup-grade9')">&times;</span>
+            <h3>محتويات الصف التاسع</h3>
+            <a class="popup-card" href="link-to-arabic9">عربي</a>
+            <a class="popup-card" href="link-to-math9">رياضة</a>
+            <a class="popup-card" href="link-to-english9">إنجليزي</a>
+            <a class="popup-card" href="link-to-socialstudies9">دراسات</a>
+            <a class="popup-card" href="link-to-science9">علوم</a>
+        </div>
+    </div>
+    
+
+    <script>
+        function openPopup(popupId) {
+            document.getElementById(popupId).style.display = "block";
+        }
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target.className === 'popup') {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدرسة الكرداسي</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .navbar {
+      background-color: rgba(13, 77, 133, 0.9);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    .navbar ul li {
+      margin: 0 15px;
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #00aced;
+      color: #fff;
+    }
+
+    .burger-menu {
+      display: none; /* إخفاء زر البرغر في الشاشات الكبيرة */
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .burger-menu span {
+      height: 3px;
+      width: 25px;
+      background-color: #fff;
+      margin: 4px 0;
+    }
+
+    .mobile-nav {
+      display: none; /* إخفاء القائمة الجانبية بشكل افتراضي */
+      flex-direction: column;
+      background-color: rgba(13, 77, 133, 0.9);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .mobile-nav.active {
+      display: flex; /* تظهر القائمة عند إضافة الكلاس active */
+    }
+
+    .hero {
+      background: url("310365217_499996508834022_2948806608982517973_n.jpg") no-repeat center center/cover;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #00aced;
+      padding: 15px 30px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #007bb5;
+    }
+
+    .about {
+      padding: 4rem 2rem;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .about img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: rgba(51, 51, 51, 0.9);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .footer-content p {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .socials {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: inline-block;
+    }
+
+    .socials li {
+      display: inline;
+      margin-right: 15px;
+    }
+
+    .socials li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .socials li a:hover {
+      color: #00aced;
+    }
+
+    @media (max-width: 768px) {
+      .burger-menu {
+        display: flex; /* عرض زر البرغر على الشاشات الصغيرة */
+      }
+
+      .navbar ul {
+        display: none; /* إخفاء القائمة الأساسية */
+      }
+    }
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="burger-menu" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul id="desktopNav">
+    <li><a href="#">الرئيسية</a></li>
+    <li><a href="videos.html">الفيديوهات التعليمية</a></li>
+    <li><a href="#about">عن المدرسة</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+    <li><a href="to-do.html">مهامي</a></li>
+  </ul>
+  <ul id="mobileNav" class="mobile-nav">
+    <li><a href="#">الرئيسية</a></li>
+    <li><a href="videos.html">الفيديوهات التعليمية</a></li>
+    <li><a href="#about">عن المدرسة</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+    <li><a href="to-do.html">مهامي</a></li>
+  </ul>
+</header>
+
+<div class="hero">
+  <h1>مرحبا بكم في مدرسة الكرداسي</h1>
+  <a href="#about" class="btn">تعرف على المزيد</a>
+</div>
+
+<section id="about" class="about">
+  <h2>عن المدرسة</h2>
+  <p>مدرسة الكرداسي هي مؤسسة تعليمية تهدف إلى تقديم أفضل جودة تعليمية في بيئة متميزة. نحن ملتزمون بتوفير تجربة تعليمية شاملة ومتطورة لطلابنا.</p>
+  <img src="ffhtrstr.jpg" alt="صورة لمدرسة الكرداسي">
+</section>  
+
+<footer>
+  <div class="footer-content">
+    <p>&copy; 2024 مدرسة الكرداسي. جميع الحقوق محفوظة.</p>
+    <ul class="socials">
+      <li><a href="#" target="_blank">فيسبوك</a></li>
+      <li><a href="#" target="_blank">تويتر</a></li>
+      <li><a href="#" target="_blank">إنستجرام</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    mobileNav.classList.toggle('active'); // تغيير حالة القائمة
+  }
+
+  document.querySelectorAll('#mobileNav li a').forEach(link => {
+    link.addEventListener('click', () => {
+      const mobileNav = document.getElementById('mobileNav');
+      mobileNav.classList.remove('active'); // إغلاق القائمة عند الضغط على رابط
+    });
+  });
+</script>
+</body>
+</html>
